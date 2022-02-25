@@ -2,7 +2,7 @@
 
 ## Pre-requisites:
 
-- (NodeJS)[https://nodejs.org/en/download/]
+- [NodeJS](https://nodejs.org/en/download/)
 
 ## Setup:
 
@@ -18,5 +18,5 @@
 - Use this project as a starting point
 - Create an endpoint `/autocomplete`:
     - Takes in a string as a parameter
-    - Returns relevant entries from the static data file (`src/data/smarty.json`)[https://drive.google.com/file/d/1sHn01eO0t9dSN7CQDCrbMHnBAIKyXn0N/view?usp=sharing]
+    - Returns relevant entries from the static data file [`src/data/smarty.json`](https://drive.google.com/file/d/1sHn01eO0t9dSN7CQDCrbMHnBAIKyXn0N/view?usp=sharing)
 - Limit response to a max of 10 entries
