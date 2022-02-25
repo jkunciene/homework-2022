@@ -1,0 +1,1 @@
+# WCC 2022 Academy Homework: Frontend Task
