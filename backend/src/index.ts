@@ -19,7 +19,28 @@ app.get('/greeting', (req, res) => {
 /**
  * TODO: Add your autocompleter endpoint below this component
  */
+ app.get("/autocomplete", async (req, res) => {
+  let obj = await import('./data/smarty.json');
+  let obj2 = obj.default;
 
+  const searchField = "displayname";
+
+  const searchVal = req.query.search?.toString() || 'Vilnius';
+
+  var reg = new RegExp(searchVal)
+  const results = obj2.filter(function(term) {
+      if (term[searchField].match(reg) && this.count < 10) {
+      this.count += 1;
+        return term;
+      }
+  }, {count: 0});
+
+  return res.json({
+    search: searchVal,
+    values: results.length,
+    results: results
+  });
+});
 
 app.listen(port, () => {
   console.log(`Backend server is listening on port ${port}.`);
