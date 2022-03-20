@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import  getData from '../services/dataService';
+import Results from './Results';
 
 const Search = () => {
 
@@ -33,6 +34,7 @@ const onSubmit = (e) => {
             />
             <input type="submit" />
         </form>
+        <Results myResults={myResults}/>
     </div>
   )
 }
