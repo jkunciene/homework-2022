@@ -19,28 +19,27 @@ app.get('/greeting', (req, res) => {
 /**
  * TODO: Add your autocompleter endpoint below this component
  */
- app.get("/autocomplete", async (req, res) => {
-  let obj = await import('./data/smarty.json');
-  let obj2 = obj.default;
+ app.get("/autocomplete", async (req, res) =>{
+  try {
+    const { default: data } = await import("./data/smarty.json");
+    const { search } = req.query;
 
-  const searchField = "displayname";
+    const filtered = data
+        .filter((obj) =>
+            obj.displayname
+                .toLowerCase()
+                .includes(search.toString().toLowerCase() ?? "")
+        )
+        .slice(0, 10);
 
-  const searchVal = req.query.search?.toString() || 'Vilnius';
-
-  var reg = new RegExp(searchVal)
-  const results = obj2.filter(function(term) {
-      if (term[searchField].match(reg) && this.count < 10) {
-      this.count += 1;
-        return term;
-      }
-  }, {count: 0});
-
-  return res.json({
-    search: searchVal,
-    values: results.length,
-    results: results
-  });
-});
+    return res.status(200).json({
+        data: filtered,
+        count: filtered.length,
+    });
+} catch (e) {
+    return res.status(500).json({ message: "error in autocomplete function" });
+}
+ })
 
 app.listen(port, () => {
   console.log(`Backend server is listening on port ${port}.`);
