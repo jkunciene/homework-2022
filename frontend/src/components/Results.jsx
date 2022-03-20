@@ -1,6 +1,5 @@
-
-
 const Results = ({myResults}) => {
+    
 console.log(myResults.data);
 
   return (

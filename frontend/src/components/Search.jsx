@@ -16,9 +16,10 @@ const onChange = async (e) => {
           }
 
 
-const onSubmit = (e) => {
-    e.preventDefault();      
-  
+const onSubmit = async (e) => {
+    e.preventDefault();        
+    const data = await getData(myLocation);    
+    setMyResults(data);  
 }
 
 
